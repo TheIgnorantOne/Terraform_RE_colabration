@@ -1,0 +1,57 @@
+---
+# tasks file for nginx-wordpress
+#
+#
+- name: Update apt-get repo and cache
+  apt: update_cache=yes force_apt_get=yes
+  ignore_errors: true
+
+- name: Install nginx software
+  apt:
+    name: "{{ software }}" 
+    state: present
+                                                                             
+- name: Remove apache if present
+  apt:
+    name: apache2
+    state: absent
+
+- name: start service
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: ["nginx", "php7.4-fpm"]
+
+- name: Creates directory
+  file:
+    path: /var/www/html
+    state: directory
+
+- name: unarchive wordpress file
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: .
+    remote_src: true
+
+- name: move data to document root
+  copy:
+    src: wordpress/
+    dest: /var/www/html
+    remote_src: true
+
+- name: copying worpress template
+  template:
+    src: wp-config.php
+    dest: /var/www/html/wp-config.php
+
+- name: del default conf
+  file:
+    name: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: copy nginx config file
+  copy:
+    src: nginx-app.conf
+    dest: /etc/nginx/conf.d/
+  notify: restart nginx service

@@ -1,0 +1,6 @@
+- name: Install PHP Software
+  apt:
+    name:
+      - php 
+      - php7.4-mysql
+    state: present

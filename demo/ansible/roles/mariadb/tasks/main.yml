@@ -1,0 +1,6 @@
+---
+# tasks file for mariadb
+
+- name: Include Amz linux
+  include_tasks: amz-linux.yml
+  when: ansible_facts['distribution'] == 'Amazon'

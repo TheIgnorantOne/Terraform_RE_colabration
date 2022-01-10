@@ -1,0 +1,5 @@
+- hosts: tag_Name_ec2_webserver
+  become: yes
+  vars_files: database_config_variables
+  roles:  
+    - role: nginx-wordpress

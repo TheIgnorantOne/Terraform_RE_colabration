@@ -1,0 +1,10 @@
+vpc_id               = "vpc-c5ef0aae"
+instance_count       = 1
+instance_keypair     = "bobby_devops"
+instance_name        = "ec2-webserver"
+instance_ami         = "ami-0fb653ca2d3203ac1"
+asg_min_capacity     = 2
+asg_max_capacity     = 2
+asg_desired_capacity = 2
+name                 = "test"
+aws_region           = "us-east-2"

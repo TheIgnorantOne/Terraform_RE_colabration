@@ -1,0 +1,6 @@
+---
+# defaults file for nginx-wordpress
+hostname: "localhost"
+database_user: "default"
+database_user_password: "pa55"
+database: "wpdb"

@@ -1,0 +1,7 @@
+---
+# defaults file for mariadb
+
+create_db_and_db_user: false
+database_name: "default"
+user_name: "default"
+host_name: "localhost"

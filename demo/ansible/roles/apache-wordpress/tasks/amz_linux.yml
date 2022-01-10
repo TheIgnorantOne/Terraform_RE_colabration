@@ -1,0 +1,11 @@
+---
+# tasks file for wordpress
+- name: Installing php7.2
+  command: amazon-linux-extras install php7.2 -y
+  changed_when: false
+
+- name: Starting Apache httpd service
+  service:
+    name: httpd
+    state: started
+    enabled: true 
